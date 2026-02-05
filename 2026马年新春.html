@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐴 2026马年新春快乐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #FF4500 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 背景装饰 */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* 灯笼 */
+        .lantern {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        .lantern:nth-child(1) { left: 5%; top: -10px; animation-delay: 0s; }
+        .lantern:nth-child(2) { left: 25%; top: -20px; animation-delay: 0.5s; }
+        .lantern:nth-child(3) { right: 25%; top: -15px; animation-delay: 1s; }
+        .lantern:nth-child(4) { right: 5%; top: -10px; animation-delay: 1.5s; }
+
+        .lantern-body {
+            width: 50px;
+            height: 60px;
+            background: linear-gradient(180deg, #FF6B6B 0%, #EE0000 50%, #CC0000 100%);
+            border-radius: 50% 50% 45% 45%;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 100, 100, 0.8);
+        }
+
+        .lantern-body::before {
+            content: '福';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .lantern-top {
+            width: 30px;
+            height: 10px;
+            background: #FFD700;
+            margin: 0 auto;
+            border-radius: 3px;
+        }
+
+        .lantern-line {
+            width: 2px;
+            height: 20px;
+            background: #FFD700;
+            margin: 0 auto;
+        }
+
+        .lantern-bottom {
+            width: 20px;
+            height: 25px;
+            border: 2px solid #FFD700;
+            border-top: none;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .lantern-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 15px;
+            background: linear-gradient(180deg, #FFD700, #FF6B6B);
+            border-radius: 2px;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* 主容器 */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        /* 马年图标 */
+        .horse-icon {
+            font-size: 80px;
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* 年份 */
+        .year {
+            font-size: 48px;
+            color: #FFD700;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+            letter-spacing: 5px;
+        }
+
+        /* 主标题 */
+        .title {
+            font-size: 36px;
+            color: #FFF;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #FFE4B5;
+            margin-bottom: 30px;
+        }
+
+        /* 祝福卡片 */
+        .blessing-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 25px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .blessing-title {
+            font-size: 22px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .blessing-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .blessing-list li {
+            color: #FFF;
+            font-size: 18px;
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .blessing-list li:last-child {
+            border-bottom: none;
+        }
+
+        .blessing-list li::before {
+            content: '🐴';
+            font-size: 20px;
+        }
+
+        /* 春联 */
+        .couplet-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .couplet {
+            background: linear-gradient(180deg, #8B0000 0%, #660000 100%);
+            border: 3px solid #FFD700;
+            border-radius: 8px;
+            padding: 15px 12px;
+            writing-mode: vertical-rl;
+            font-size: 22px;
+            color: #FFD700;
+            font-weight: bold;
+            letter-spacing: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .couplet-horizontal {
+            background: linear-gradient(90deg, #8B0000 0%, #660000 100%);
+            border: 3px solid #FFD700;
+            border-radius: 8px;
+            padding: 10px 25px;
+            font-size: 24px;
+            color: #FFD700;
+            font-weight: bold;
+            letter-spacing: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        /* 红包动画 */
+        .red-envelope {
+            width: 120px;
+            height: 160px;
+            background: linear-gradient(180deg, #FF4444 0%, #CC0000 100%);
+            border-radius: 10px;
+            margin: 30px auto;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .red-envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .red-envelope:active {
+            transform: scale(0.95);
+        }
+
+        .red-envelope::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .red-envelope::after {
+            content: '開';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            color: #CC0000;
+            font-weight: bold;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(180deg, #FF6666 0%, #FF4444 100%);
+            border-radius: 10px 10px 50% 50%;
+            transition: transform 0.5s ease;
+            transform-origin: top center;
+        }
+
+        .red-envelope.opened .envelope-flap {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope-content {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #FFD700;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.3s;
+            white-space: nowrap;
+        }
+
+        .red-envelope.opened .envelope-content {
+            opacity: 1;
+        }
+
+        .tap-hint {
+            font-size: 14px;
+            color: #FFE4B5;
+            margin-top: 10px;
+        }
+
+        /* 底部祝福 */
+        .footer-blessing {
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 20px;
+            color: #FFD700;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 215, 0, 0.5); }
+        }
+
+        /* 烟花效果 */
+        .firework {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .firework-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* 飘落的金币 */
+        .coin {
+            position: fixed;
+            font-size: 24px;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* 音乐按钮 */
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 215, 0, 0.9);
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 响应式 */
+        @media (max-width: 400px) {
+            .title { font-size: 28px; }
+            .year { font-size: 36px; }
+            .couplet { font-size: 18px; padding: 12px 10px; }
+            .blessing-list li { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景灯笼 -->
+    <div class="bg-decoration">
+        <div class="lantern">
+            <div class="lantern-line"></div>
+            <div class="lantern-top"></div>
+            <div class="lantern-body"></div>
+            <div class="lantern-bottom"></div>
+        </div>
+        <div class="lantern">
+            <div class="lantern-line"></div>
+            <div class="lantern-top"></div>
+            <div class="lantern-body"></div>
+            <div class="lantern-bottom"></div>
+        </div>
+        <div class="lantern">
+            <div class="lantern-line"></div>
+            <div class="lantern-top"></div>
+            <div class="lantern-body"></div>
+            <div class="lantern-bottom"></div>
+        </div>
+        <div class="lantern">
+            <div class="lantern-line"></div>
+            <div class="lantern-top"></div>
+            <div class="lantern-body"></div>
+            <div class="lantern-bottom"></div>
+        </div>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="container">
+        <!-- 马年图标 -->
+        <div class="horse-icon">🐴</div>
+
+        <!-- 年份 -->
+        <div class="year">2026</div>
+
+        <!-- 标题 -->
+        <h1 class="title">新春快乐</h1>
+        <p class="subtitle">丙午马年 · 万事如意</p>
+
+        <!-- 横批 -->
+        <div class="couplet-horizontal">马到成功</div>
+
+        <!-- 春联 -->
+        <div class="couplet-container">
+            <div class="couplet">骏马奔腾迎新岁</div>
+            <div class="couplet">春风得意展宏图</div>
+        </div>
+
+        <!-- 祝福卡片 -->
+        <div class="blessing-card">
+            <div class="blessing-title">
+                <span>🧧</span>
+                <span>新春祝福</span>
+                <span>🧧</span>
+            </div>
+            <ul class="blessing-list">
+                <li>愿你马年行大运，事业腾飞步步高</li>
+                <li>愿你身体健康，龙马精神每一天</li>
+                <li>愿你财源广进，金银满屋笑开颜</li>
+                <li>愿你阖家幸福，团团圆圆乐无边</li>
+                <li>愿你心想事成，万事顺遂如意年</li>
+            </ul>
+        </div>
+
+        <!-- 红包 -->
+        <div class="red-envelope" onclick="openEnvelope(this)">
+            <div class="envelope-flap"></div>
+            <div class="envelope-content">🎊 恭喜发财 🎊</div>
+        </div>
+        <p class="tap-hint">👆 点击红包领取祝福</p>
+
+        <!-- 底部祝福 -->
+        <div class="footer-blessing">
+            🎊 恭祝马年大吉 · 新春快乐 🎊
+        </div>
+    </div>
+
+    <script>
+        // 打开红包
+        function openEnvelope(el) {
+            if (!el.classList.contains('opened')) {
+                el.classList.add('opened');
+                createFirework(window.innerWidth / 2, window.innerHeight / 2);
+                createCoins();
+
+                // 震动反馈（如果支持）
+                if (navigator.vibrate) {
+                    navigator.vibrate(100);
+                }
+            }
+        }
+
+        // 创建烟花
+        function createFirework(x, y) {
+            const colors = ['#FFD700', '#FF6B6B', '#FF69B4', '#00FF7F', '#87CEEB', '#FFA500'];
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = x + 'px';
+            firework.style.top = y + 'px';
+            document.body.appendChild(firework);
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-particle';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+                const angle = (Math.PI * 2 * i) / 30;
+                const distance = 100 + Math.random() * 100;
+                particle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                particle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+
+                firework.appendChild(particle);
+            }
+
+            setTimeout(() => firework.remove(), 1500);
+        }
+
+        // 创建金币雨
+        function createCoins() {
+            const emojis = ['🪙', '💰', '🧧', '✨', '🎊'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const coin = document.createElement('div');
+                    coin.className = 'coin';
+                    coin.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    coin.style.left = Math.random() * window.innerWidth + 'px';
+                    coin.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    document.body.appendChild(coin);
+
+                    setTimeout(() => coin.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        // 随机烟花
+        function randomFirework() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight / 2);
+            createFirework(x, y);
+        }
+
+        // 定时放烟花
+        setInterval(randomFirework, 3000);
+
+        // 页面加载完成后放一次烟花
+        window.onload = function() {
+            setTimeout(() => {
+                randomFirework();
+            }, 1000);
+        };
+
+        // 点击页面任意位置放烟花
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.red-envelope')) {
+                createFirework(e.clientX, e.clientY);
+            }
+        });
+    </script>
+</body>
+</html>
